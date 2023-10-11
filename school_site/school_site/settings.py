@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     "school_site.school_class",
     "school_site.students",
     "school_site.subject",
-    "school_site.auth_users",
+    "school_site.auth_teachers",
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+AUTH_USER_MODEL = "auth_teachers.AppUser"

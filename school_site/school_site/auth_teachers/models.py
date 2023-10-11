@@ -1,6 +1,5 @@
-from django.db import models
-
 from django.contrib.auth.hashers import make_password
+from django.db import models
 from django.contrib.auth import models as auth_models
 
 
@@ -49,6 +48,4 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     is_staff = models.BooleanField(
         default=False,
     )
-
-
 

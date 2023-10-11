@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AuthUsersConfig(AppConfig):
+class AuthTeachersConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "school_site.auth_users"
+    name = "school_site.auth_teachers"
