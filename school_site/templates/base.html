@@ -1,10 +1,46 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>School</title>
+    <link rel="stylesheet"
+          href="{% static "css/style.css" %}">
+    <link rel="icon" href="{% static "images/logo.jpg" %}" title="School">
 </head>
 <body>
+  <header>
+    <nav>
+      <ul>
+          {% if request.user.is_staff %}
+              <li><a href="{% url "register_user" %}">Register</a></li>
+              <li><a href="{% url "logout_user" %}">Logout</a></li>
+          {% elif request.user.is_authenticated %}
+        <li><a href="#" class="active">My Class</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Students</a></li>
+              <li><a href="{% url "details_user" pk=user.pk %}">Profile</a></li>
+              <li><a href="{% url "logout_user" %}">Logout</a></li>
+          {% else %}
+          <li><a href="{% url "login_user" %}">Login</a></li>
+          {% endif %}
+      </ul>
+    </nav>
+    <script src="{% static "js/home_js.js" %}"></script>
+  </header>
 
+  <main>
+      {% block content %}
+      {% endblock %}
+  </main>
+
+  <footer>
+    <p>Phone: 123-456-7890</p>
+    <p>Follow us on <a href="https://www.facebook.com">Facebook</a></p>
+    <p>Email: info@example.com</p>
+  </footer>
 </body>
 </html>

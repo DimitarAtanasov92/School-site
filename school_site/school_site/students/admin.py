@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from school_site.students.models import Note, Absence, Student, Teacher
+from school_site.students.models import Note, Absence, Student
+from school_site.subject.models import Teacher
 
 
 # Register your models here.
@@ -23,4 +24,4 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_filter = ["first_name"]
+    list_filter = ["first_name", "last_name"]

@@ -1,13 +1,17 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Check</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Welcome to My Website</h1>
+	<div class="container">
+      <img src="{% static 'images/logo.jpg' %}" alt="Image">
+      <p>Welcome to our school website! We are a community of learners dedicated to providing an exceptional education to our students. Our school is committed to creating a safe and inclusive environment where students can thrive academically, socially, and emotionally.
+
+At our school, we offer a rigorous and engaging curriculum that prepares students for success in college, career, and life. Our experienced and dedicated teachers work tirelessly to provide students with the knowledge and skills they need to succeed.
+
+We also offer a variety of extracurricular activities to help students explore their interests and develop their talents. From sports teams to music programs, there's something for everyone at our school.
+
+We believe that education is a partnership between the school, students, and families. We encourage parents and guardians to get involved in their child's education through volunteering, attending school events, and communicating with teachers.
+
+Thank you for visiting our website. We hope you'll take the time to explore all that our school has to offer.</p>
+    </div>
+{% endblock %}

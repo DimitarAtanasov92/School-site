@@ -1,9 +1,10 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.db.models import CASCADE
 
+from school_site.school_class.models import SchoolClass
 from school_site.subject.models import Subject
 from school_site.auth_teachers.models import AppUser
+from django.contrib.auth import get_user_model
 
 UserModel = get_user_model()
 
@@ -12,6 +13,13 @@ class Student(models.Model):
     name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
+    school_class = models.ForeignKey(SchoolClass, on_delete=models.CASCADE)
+
+    user = models.OneToOneField(
+        UserModel,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
 
     def __str__(self):
         return f"{self.name} {self.last_name}"
@@ -35,25 +43,7 @@ class Absence(models.Model):
         return f"Absences: {self.absences}"
 
 
-class Teacher(models.Model):
-    subjects = models.ManyToManyField(Subject)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
-    is_teacher = models.BooleanField(default=False)
-
-    user = models.OneToOneField(
-        UserModel,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
-
 class Grade(models.Model):
-
     subject = models.OneToOneField(Subject, on_delete=models.CASCADE)
     grade = models.IntegerField(choices=[(i, i) for i in range(1, 7)])
     date = models.DateField()
@@ -61,4 +51,3 @@ class Grade(models.Model):
 
     def __str__(self):
         return f"{self.subject} - Grade: {self.grade}"
-

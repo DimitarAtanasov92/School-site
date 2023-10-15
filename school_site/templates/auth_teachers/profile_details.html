@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet"
+          href="{% static "css/profile_details_css.css" %}">
+    <body>
+  <div class="container">
+    <h1>Profile Details</h1>
+    <form id="profileForm">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <p>{{ teacher.first_name }}</p>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <p>{{ teacher.last_name }}</p>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth:</label>
+        <p>{{ teacher.date_of_birth }}</p>
+      </div>
+      <div class>
+          <label for="form-group">Subject</label>
+          <p>{{ teacher.subjects.name }}</p>
+      </div>
+    </form>
+  </div>
+</body>
+  <script src="{% static "js/profile_details_js.js" %}"></script>
+{% endblock %}
