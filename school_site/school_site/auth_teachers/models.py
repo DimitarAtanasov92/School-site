@@ -22,6 +22,7 @@ class AppUserManager(auth_models.BaseUserManager):
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser", False)
         extra_fields.setdefault("is_student", False)
+        extra_fields.setdefault("is_teacher", False)
         return self._create_user(email, password, **extra_fields)
 
     def create_superuser(self, email=None, password=None, **extra_fields):
@@ -50,7 +51,14 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         default=False,
     )
 
+    is_teacher = models.BooleanField(
+        default=False,
+    )
+
     is_student = models.BooleanField(
         default=False,
     )
+
+    first_name = models.CharField(max_length=255, blank=True, null=True)
+    last_name = models.CharField(max_length=255, blank=True, null=True)
 

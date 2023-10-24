@@ -10,10 +10,10 @@ UserModel = get_user_model()
 
 
 class Student(models.Model):
-    name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
-    school_class = models.ForeignKey(SchoolClass, on_delete=models.CASCADE)
+    email = models.EmailField(max_length=30)
+    name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
+    school_class = models.ForeignKey(SchoolClass, on_delete=models.CASCADE, blank=True, null=True)
 
     user = models.OneToOneField(
         UserModel,

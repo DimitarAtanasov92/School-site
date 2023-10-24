@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, login
 
-from school_site.auth_teachers.forms import RegisterUserForm
+from school_site.auth_teachers.forms import RegisterUserForm, RegisterUserFormStudent
 from school_site.subject.models import Teacher
 
 
@@ -20,11 +20,20 @@ class LogoutUserView(auth_views.LogoutView):
 class RegisterUserView(views.CreateView):
     template_name = "auth_teachers/register.html"
     form_class = RegisterUserForm
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("register_user")
 
     def form_valid(self, form):
         result = super().form_valid(form)
-        login(self.request, self.object)
+        return result
+
+
+class RegisterUserViewStudent(views.CreateView):
+    template_name = "auth_teachers/register_student.html"
+    form_class = RegisterUserFormStudent
+    success_url = reverse_lazy("register_student")
+
+    def form_valid(self, form):
+        result = super().form_valid(form)
         return result
 
 

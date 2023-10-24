@@ -6,10 +6,9 @@ UserModel = get_user_model()
 
 
 class Teacher(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    date_of_birth = models.DateField()
-    is_teacher = models.BooleanField(default=False)
+    email = models.EmailField(max_length=30)
+    first_name = models.CharField(max_length=255, null=True, blank=True)
+    last_name = models.CharField(max_length=255, null=True, blank=True)
 
     user = models.OneToOneField(
         UserModel,
