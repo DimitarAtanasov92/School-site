@@ -40,3 +40,15 @@ class RegisterUserViewStudent(views.CreateView):
 class ProfileDetailView(views.DetailView):
     model = Teacher
     template_name = 'auth_teachers/profile_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        teacher = self.object
+        subjects = teacher.subject.all()
+        context['subjects'] = subjects
+        return context
+
+
+class MyClassDetailView(views.DetailView):
+    model = Teacher
+    template_name = "school_class/school_class.html"
