@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
+    <link rel="stylesheet" href="{% static "css/my_class.css" %}">
+<h1>Class: {{ class_name }}</h1>
+    {% for student in students %}
+        <a href="{% url "student_details" student.pk %}"><h2>{{ student.name }} {{ student.last_name }}</h2></a>
+    {% endfor %}
+    <script src="{% static "js/my_class.js" %}"></script>
 {% endblock %}

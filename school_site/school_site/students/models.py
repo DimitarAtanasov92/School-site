@@ -44,10 +44,10 @@ class Absence(models.Model):
 
 
 class Grade(models.Model):
-    subject = models.OneToOneField(Subject, on_delete=models.CASCADE)
+    subject = models.ManyToManyField(Subject, null=True, blank=True)
     grade = models.IntegerField(choices=[(i, i) for i in range(1, 7)])
     date = models.DateField()
-    student = models.ForeignKey(Student, null=True, blank=True, on_delete=CASCADE)
+    student = models.ForeignKey(Student, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.subject} - Grade: {self.grade}"

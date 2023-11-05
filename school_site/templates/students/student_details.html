@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static "css/student_details.css" %}">
+        <h1>Student: {{ student.name }} {{ student.last_name }}</h1>
+    <h2>Grades</h2>
+    <ul>
+        <li>Math:</li>
+        {% for grade in math_grades %}
+            <p>{{ grade.grade }}</p>
+            <p>{{ grade.date }}</p>
+        {% endfor %}
+        <li>History:</li>
+        {% for grade in history_grades %}
+            <p>{{ grade.grade }}</p>
+            <p>{{ grade.date }}</p>
+        {% endfor %}
+    </ul>
+    <h2>Note</h2>
+    {% for n in note %}
+    <p>{{ n.date }}</p>
+        <p>{{ n.text }}</p>
+    {% endfor %}
+    <h2>Absence</h2>
+    {% for a in absence %}
+        <p>{{ a.date }}</p>
+        <p>{{ a.absences }}</p>
+    {% endfor %}
+    <script src="{% static "js/student_details.js" %}"></script>
+{% endblock %}
