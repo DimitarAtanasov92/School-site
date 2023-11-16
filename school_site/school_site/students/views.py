@@ -19,3 +19,9 @@ class StudentsDetailsView(views.DetailView):
         context['math_grades'] = math_grades
         context['history_grades'] = history_grades
         return context
+
+
+class StudentsAddGANView(views.ListView):
+    model = Student
+    template_name = 'students/students.html'
+    # paginate_by = 5

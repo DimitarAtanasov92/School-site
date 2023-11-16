@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Student Page</h1>
+    <input type="text" id="name-filter" placeholder="Enter student name">
+    <ul class="student-list">
+    {% for std in object_list %}
+        <li>
+                <a href="#" class="student-link">{{ std.name }} {{ std.last_name }} {{ std.school_class }}</a>
+                <div class="button-container">
+                    <a href="#" class="grade-button">Add Grade</a>
+                    <a href="#" class="flourish-button">Add Absence</a>
+                    <a href="#" class="note-button">Add Note</a>
+                </div>
+            </li>
+    {% endfor %}
+    </ul>
+{#    {% if page_obj.has_previous %}#}
+{#    <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">&lt;</a>#}
+{#{% endif %}#}
+{#{{ page_obj.number }} / {{ paginator.num_pages }}#}
+{#{% if page_obj.has_next %}#}
+{#    <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">&gt;</a>#}
+{#{% endif %}#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/student.css' %}">
+    <script src="{% static 'js/student.js' %}"></script>
+{% endblock %}

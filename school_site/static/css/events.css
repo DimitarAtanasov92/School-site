@@ -1,0 +1,13 @@
+.event {
+            background-color: lightblue;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+#myImage {
+  width: 200px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Apply rounded corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>Events</h1>
+    {% for event in events %}
+        <div class="event">
+            <img id="myImage" src="{% static "images/logo.jpg" %}" alt="Img">
+            <h2>{{ event.title }}</h2>
+            <p>{{ event.description }}</p>
+        </div>
+    {% endfor %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/events.css' %}">
+    <script src="{% static 'js/events.js' %}"></script>
+{% endblock %}

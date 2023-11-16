@@ -21,8 +21,8 @@
               <li><a href="{% url "logout_user" %}">Logout</a></li>
           {% elif request.user.is_teacher %}
         <li><a href="{% url "my_class" pk=user.pk %}" class="active">My Class</a></li>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Students</a></li>
+        <li><a href="{% url 'events' %}">Events</a></li>
+        <li><a href="{% url 'studentList' %}">Students</a></li>
               <li><a href="{% url "details_user" pk=user.pk %}">Profile</a></li>
               <li><a href="{% url "logout_user" %}">Logout</a></li>
               {% elif request.user.is_student %}

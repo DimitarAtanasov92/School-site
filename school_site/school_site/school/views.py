@@ -7,8 +7,13 @@ from school_site.school.models import Event
 
 
 def home(request):
-    events = Event.objects.all()
+    return render(request, 'school/home.html')
+
+
+def events(request):
+
+    school_events = Event.objects.all()
     context = {
-        "events": events,
+        "events": school_events,
     }
-    return render(request, 'school/home.html', context=context)
+    return render(request, 'school/events.html', context=context)
