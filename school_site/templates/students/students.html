@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+    {% if request.user.is_teacher %}
     <h1>Student Page</h1>
     <input type="text" id="name-filter" placeholder="Enter student name">
     <ul class="student-list">
     {% for std in object_list %}
         <li>
-                <a href="#" class="student-link">{{ std.name }} {{ std.last_name }} {{ std.school_class }}</a>
+                <a href="{% url "student_grade_details" pk=std.pk %}" class="student-link">{{ std.name }} {{ std.last_name }} {{ std.school_class }}</a>
                 <div class="button-container">
                     <a href="#" class="grade-button">Add Grade</a>
                     <a href="#" class="flourish-button">Add Absence</a>
@@ -15,6 +16,9 @@
             </li>
     {% endfor %}
     </ul>
+    {% else %}
+    <h1>You do not have permission for this page!</h1>
+    {% endif %}
 {#    {% if page_obj.has_previous %}#}
 {#    <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">&lt;</a>#}
 {#{% endif %}#}

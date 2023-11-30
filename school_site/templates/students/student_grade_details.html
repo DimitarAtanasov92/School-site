@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>{{ student.name }} {{ student.last_name }} {{ student.school_class }}</h1>
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Grade</th>
+            <th>Date</th>
+        </tr>
+        {% for subject in subjects1 %}
+            <tr>
+                <td>{{ subject.subject.name }}</td>
+                <td>{{ subject.grade }}</td>
+                <td>{{ subject.date }}</td>
+            </tr>
+        {% endfor %}
+        {% for subject in subjects2 %}
+            <tr>
+                <td>{{ subject.subject.name }}</td>
+                <td>{{ subject.grade }}</td>
+                <td>{{ subject.date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <link rel="stylesheet" href="{% static 'css/student_grade_details.css' %}">
+{% endblock %}
