@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic as views
+
+from school_site.students.forms import AbsenceForm
 from school_site.students.models import Student
 from school_site.subject.models import Teacher
 
@@ -38,8 +40,24 @@ class StudentGradeDetailsView(views.DetailView):
         user = self.request.user.pk
         teacher = Teacher.objects.filter(pk=user)[0]
         subjects_1 = student.grade_set.filter(subject__name=teacher.subject.all()[0])
-        subjects_2 = student.grade_set.filter(subject__name=teacher.subject.all()[1])
         context["subjects1"] = subjects_1
-        context["subjects2"] = subjects_2
+        try:
+            subjects_2 = student.grade_set.filter(subject__name=teacher.subject.all()[1])
+            context["subjects2"] = subjects_2
+        except IndexError:
+            print("Couldn't find")
 
         return context
+
+
+def add_absence(request, pk):
+    if request.method == 'POST':
+        form = AbsenceForm(request.POST)
+        if form.is_valid():
+            absence = form.save(commit=False)
+            absence.student = Student.objects.get(pk=pk)
+            absence.save()
+            return redirect('studentList')
+    else:
+        form = AbsenceForm()
+    return render(request, 'students/add_absence.html', {'form': form})

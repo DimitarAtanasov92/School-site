@@ -23,5 +23,10 @@
             </tr>
         {% endfor %}
     </table>
+    <div class="button-container">
+                    <a href="#" class="grade-button">Add Grade</a>
+                    <a href="{% url "student_add_absence" pk=student.pk %}" class="flourish-button">Add Absence</a>
+                    <a href="#" class="note-button">Add Note</a>
+                </div>
     <link rel="stylesheet" href="{% static 'css/student_grade_details.css' %}">
 {% endblock %}

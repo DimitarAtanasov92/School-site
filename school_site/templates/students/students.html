@@ -8,11 +8,6 @@
     {% for std in object_list %}
         <li>
                 <a href="{% url "student_grade_details" pk=std.pk %}" class="student-link">{{ std.name }} {{ std.last_name }} {{ std.school_class }}</a>
-                <div class="button-container">
-                    <a href="#" class="grade-button">Add Grade</a>
-                    <a href="#" class="flourish-button">Add Absence</a>
-                    <a href="#" class="note-button">Add Note</a>
-                </div>
             </li>
     {% endfor %}
     </ul>
