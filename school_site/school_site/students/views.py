@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic as views
 
-from school_site.students.forms import AbsenceForm
+from school_site.students.forms import AbsenceForm, NoteForm
 from school_site.students.models import Student
 from school_site.subject.models import Teacher
 
@@ -51,6 +51,7 @@ class StudentGradeDetailsView(views.DetailView):
 
 
 def add_absence(request, pk):
+
     if request.method == 'POST':
         form = AbsenceForm(request.POST)
         if form.is_valid():
@@ -61,3 +62,17 @@ def add_absence(request, pk):
     else:
         form = AbsenceForm()
     return render(request, 'students/add_absence.html', {'form': form})
+
+
+def add_note(request, pk):
+
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.student = Student.objects.get(pk=pk)
+            note.save()
+            return redirect('studentList')
+    else:
+        form = NoteForm()
+    return render(request, 'students/add_note.html', {'form': form})
