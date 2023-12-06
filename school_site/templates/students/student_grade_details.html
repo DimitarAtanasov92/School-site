@@ -24,7 +24,7 @@
         {% endfor %}
     </table>
     <div class="button-container">
-                    <a href="#" class="grade-button">Add Grade</a>
+                    <a href="{% url "student_add_grade" pk=student.pk %}" class="grade-button">Add Grade</a>
                     <a href="{% url "student_add_absence" pk=student.pk %}" class="flourish-button">Add Absence</a>
                     <a href="{% url "student_add_note" pk=student.pk %}" class="note-button">Add Note</a>
                 </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic as views
 
-from school_site.students.forms import AbsenceForm, NoteForm
+from school_site.students.forms import AbsenceForm, NoteForm, GradeForm
 from school_site.students.models import Student
 from school_site.subject.models import Teacher
 
@@ -76,3 +76,25 @@ def add_note(request, pk):
     else:
         form = NoteForm()
     return render(request, 'students/add_note.html', {'form': form})
+
+
+def add_grade(request, pk):
+
+    if request.method == 'POST':
+        form = GradeForm(request.POST)
+        if form.is_valid():
+            grade = form.save(commit=False)
+            user = request.user.pk
+            grade.student = Student.objects.get(pk=pk)
+            teacher = Teacher.objects.filter(pk=user)[0]
+            if grade.subject not in teacher.subject.all():
+                return redirect('errorSubject')
+            grade.save()
+            return redirect('studentList')
+    else:
+        form = GradeForm()
+    return render(request, 'students/add_grade.html', {'form': form})
+
+
+class ErrorSubjectView(views.TemplateView):
+    template_name = "students/error_subject.html"
