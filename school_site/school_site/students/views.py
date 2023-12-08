@@ -98,3 +98,15 @@ def add_grade(request, pk):
 
 class ErrorSubjectView(views.TemplateView):
     template_name = "students/error_subject.html"
+
+
+class MyNoteDetailView(views.DetailView):
+    model = Student
+    template_name = "students/my_note.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = self.object
+        note = student.note_set.all()
+        context["note"] = note
+        return context
