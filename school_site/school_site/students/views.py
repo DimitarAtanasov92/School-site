@@ -110,3 +110,29 @@ class MyNoteDetailView(views.DetailView):
         note = student.note_set.all()
         context["note"] = note
         return context
+
+
+class MyAbsenceDetailView(views.DetailView):
+    model = Student
+    template_name = "students/my_absence.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = self.object
+        absence = student.absence_set.all()
+        context["absence"] = absence
+        return context
+
+
+class MyGradeDetailView(views.DetailView):
+    model = Student
+    template_name = "students/my_grade.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        student = self.object
+        math_grades = student.grade_set.filter(subject__name='Math')
+        history_grades = student.grade_set.filter(subject__name='History')
+        context['math_grades'] = math_grades
+        context['history_grades'] = history_grades
+        return context

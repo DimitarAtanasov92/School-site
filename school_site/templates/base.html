@@ -26,10 +26,11 @@
               <li><a href="{% url "details_user" pk=user.pk %}">Profile</a></li>
               <li><a href="{% url "logout_user" %}">Logout</a></li>
               {% elif request.user.is_student %}
+              <li>Name: {{ user.first_name }} {{ user.last_name }}</li>
               <li><a href="{% url "events" %}">Events</a></li>
               <li><a href="{% url "my_notes" pk=user.pk %}">My note</a></li>
-              <li><a href="#">My absense</a></li>
-              <li><a href="#">My grade</a></li>
+              <li><a href="{% url "my_absence" pk=user.pk %}">My absense</a></li>
+              <li><a href="{% url "my_grade" pk=user.pk %}">My grade</a></li>
               <li><a href="{% url "logout_user" %}">Logout</a></li>
           {% else %}
           <li><a href="{% url "login_user" %}">Login</a></li>
